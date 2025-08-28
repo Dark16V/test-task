@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать пользователя {{ user.full_name or user.email }}</title>
+</head>
+<body>
+    <h1>Редактировать пользователя</h1>
+
+    <form method="post" action="/admin/edit/user/{{ user.id }}">
+        <p>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+        </p>
+
+        <p>
+            <label for="full_name">Имя:</label><br>
+            <input type="text" id="full_name" name="full_name" value="{{ user.full_name or '' }}" required>
+        </p>
+
+        <p>
+            <label for="is_admin">
+                <input type="checkbox" id="is_admin" name="is_admin" {% if user.is_admin %}checked{% endif %}>
+                Администратор
+            </label>
+        </p>
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+
+    <p>
+        <a href="/admin/users">← Назад к списку пользователей</a>
+    </p>
+</body>
+</html>

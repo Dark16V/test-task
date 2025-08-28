@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать счёт #{{ account.id }}</title>
+</head>
+<body>
+    <h1>Редактировать счёт #{{ account.id }}</h1>
+
+    <form method="post" action="/admin/edit/account/{{ account.id }}">
+        <p>
+            <label for="balance">Баланс:</label><br>
+            <input type="number" step="0.01" id="balance" name="balance" value="{{ account.balance }}" required>
+        </p>
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+
+    <p>
+        <a href="/admin/user/{{ account.user_id }}">← Назад к пользователю</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+</head>
+<body>
+    <h1>Профиль пользователя</h1>
+    <p><strong>ID:</strong> {{ user.id }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Ник:</strong> {{ user.full_name or "—" }}</p>
+
+    <h2>Счета</h2>
+    {% if accounts %}
+        <ul>
+            {% for account in accounts %}
+                <li>Счет #{{ account.id }} — Баланс: {{ account.balance }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Счетов нет</p>
+    {% endif %}
+
+    <h2>Платежи</h2>
+    {% if payments %}
+        <ul>
+            {% for payment in payments %}
+                <li>Платеж #{{ payment.id }} — Сумма: {{ payment.amount }} (счет {{ payment.account_id }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Платежей нет</p>
+    {% endif %}
+</body>
+</html>

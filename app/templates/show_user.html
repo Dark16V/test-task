@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь {{ user.full_name or user.email }}</title>
+</head>
+<body>
+    <h1>Информация о пользователе</h1>
+
+    <p><strong>ID:</strong> {{ user.id }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Имя:</strong> {{ user.full_name or "—" }}</p>
+
+    <p>
+        <a href="/admin/users/{{ user.id }}/edit">
+            <button>Редактировать</button>
+        </a>
+        <form method="post" action="/admin/delete/user/{{ user.id }}" style="display:inline;">
+            <button type="submit">
+                Удалить
+            </button>
+        </form>
+    </p>
+
+    <hr>
+
+    <h2>Счета и платежи</h2>
+    {% if accounts %}
+        {% for account in accounts %}
+            <div style="border:1px solid #ccc; padding:10px; margin-bottom:15px;">
+                <p><strong>Счёт #{{ account.id }}</strong> — Баланс: {{ account.balance }}</p>
+                <a href="/admin/account/{{ account.id }}/edit">
+                    <button>Редактировать счёт</button>
+                </a>
+
+                <h3>Платежи</h3>
+                {% if account.payments %}
+                    <ul>
+                        {% for payment in account.payments %}
+                            <li>Платёж #{{ payment.id }} — {{ payment.amount }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Нет платежей</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>У пользователя нет счетов</p>
+    {% endif %}
+    <a href="/admin/users">
+        <button>Назад</button>
+    </a>
+</body>
+</html>

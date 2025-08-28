@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Создать пользователя</title>
+</head>
+<body>
+    <h1>Создать нового пользователя</h1>
+
+    <form method="post" action="/admin/create/user">
+        <p>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required>
+        </p>
+
+        <p>
+            <label for="full_name">Имя:</label><br>
+            <input type="text" id="full_name" name="full_name" required>
+        </p>
+
+        <p>
+            <label for="password">Пароль:</label><br>
+            <input type="password" id="password" name="password" required>
+        </p>
+
+        <p>
+            <label for="is_admin">
+                <input type="checkbox" id="is_admin" name="is_admin">
+                Администратор
+            </label>
+        </p>
+
+        <button type="submit">Создать пользователя</button>
+    </form>
+
+    <p>
+        <a href="/admin/users">← Назад к списку пользователей</a>
+    </p>
+</body>
+</html>
